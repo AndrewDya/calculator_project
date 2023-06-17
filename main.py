@@ -19,7 +19,7 @@ def calculate():
         num1 = complex(request.form['num1'])
         operation = request.form['operation']
 
-        if operation in ['add', 'multiply', 'divide']:
+        if operation in ['add', 'subtract', 'multiply', 'divide', 'pow']:
             num2 = complex(request.form['num2'])
             result = calculator_presenter.calculate(operation, num1, num2)
         else:

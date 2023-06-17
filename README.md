@@ -4,7 +4,7 @@
 
 ## Установка
 
-1. Установите Python (версия 3.x) с официального сайта [python.org](https://www.python.org).
+1. Установите Python (версия 3.9 и выше) с официального сайта [python.org](https://www.python.org).
 
 2. Установите зависимости, выполнив следующую команду:
 pip install flask loguru
@@ -27,4 +27,4 @@ python main.py
 
 Этот проект лицензирован под лицензией MIT. Подробности см. в файле [LICENSE](LICENSE).
 
-![Калькулятор комплексных чисел](images/calc.png)
+![Калькулятор комплексных чисел](static/calc.png)

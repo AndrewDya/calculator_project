@@ -7,14 +7,15 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #e6f7ff, #ccf0ff);
+            background: url("{{ url_for('static', filename='wallpap.jpg') }}") no-repeat center center fixed;
+            background-size: cover;
         }
 
         .container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             height: 100vh;
             text-align: center;
         }
@@ -70,6 +71,10 @@
             font-weight: bold;
         }
 
+        .result {
+            margin-top: 20px;
+        }
+
         .history {
             margin-top: 20px;
             text-align: left;
@@ -90,6 +95,7 @@
             <label for="operation">Операция:</label>
             <select id="operation" name="operation">
                 <option value="add">Сложение</option>
+                <option value="subtract">Вычитание</option>
                 <option value="multiply">Умножение</option>
                 <option value="divide">Деление</option>
                 <option value="sqrt">Квадратный корень</option>
@@ -100,7 +106,9 @@
         </form>
 
         {% if result %}
-            <h2>Результат: {{ result }}</h2>
+            <div class="result">
+                <h2>Результат: {{ result }}</h2>
+            </div>
         {% endif %}
 
         {% if error %}
@@ -120,3 +128,4 @@
     </div>
 </body>
 </html>
+
