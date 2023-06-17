@@ -69,6 +69,11 @@
             color: red;
             font-weight: bold;
         }
+
+        .history {
+            margin-top: 20px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
@@ -80,13 +85,15 @@
             <input type="text" id="num1" name="num1" required><br><br>
 
             <label for="num2">Число 2:</label>
-            <input type="text" id="num2" name="num2" required><br><br>
+            <input type="text" id="num2" name="num2"><br><br>
 
             <label for="operation">Операция:</label>
             <select id="operation" name="operation">
                 <option value="add">Сложение</option>
                 <option value="multiply">Умножение</option>
                 <option value="divide">Деление</option>
+                <option value="sqrt">Квадратный корень</option>
+                <option value="pow">Возведение в степень</option>
             </select><br><br>
 
             <input type="submit" value="Выполнить">
@@ -98,6 +105,17 @@
 
         {% if error %}
             <h2 class="error">Ошибка: {{ error }}</h2>
+        {% endif %}
+
+        {% if history %}
+            <div class="history">
+                <h2>История операций:</h2>
+                <ul>
+                    {% for operation in history %}
+                        <li>{{ operation }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         {% endif %}
     </div>
 </body>

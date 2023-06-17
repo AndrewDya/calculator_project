@@ -1,9 +1,11 @@
 from flask import Flask, request, render_template
-from calculator.operations import Calculator
+from calculator.operations import CalculatorModel, CalculatorView, CalculatorPresenter
 from loguru import logger
 
 app = Flask(__name__)
-calculator = Calculator()
+calculator_model = CalculatorModel()
+calculator_view = CalculatorView()
+calculator_presenter = CalculatorPresenter(calculator_model, calculator_view)
 
 
 @app.route('/')
@@ -15,17 +17,17 @@ def index():
 def calculate():
     try:
         num1 = complex(request.form['num1'])
-        num2 = complex(request.form['num2'])
         operation = request.form['operation']
 
-        if operation == 'add':
-            result = calculator.add(num1, num2)
-        elif operation == 'multiply':
-            result = calculator.multiply(num1, num2)
-        elif operation == 'divide':
-            result = calculator.divide(num1, num2)
+        if operation in ['add', 'multiply', 'divide']:
+            num2 = complex(request.form['num2'])
+            result = calculator_presenter.calculate(operation, num1, num2)
+        else:
+            result = calculator_presenter.calculate(operation, num1)
 
-        return render_template('index.html', result=result)
+        history = calculator_model.get_history()
+
+        return render_template('index.html', result=result, history=history)
     except Exception as e:
         logger.error(f"Ошибка: {str(e)}")
         return render_template('index.html', error=str(e))
